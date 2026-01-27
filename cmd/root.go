@@ -55,6 +55,7 @@ func init() {
 	rootCmd.PersistentFlags().BoolVarP(&tapir.GlobalCF.UseTLS, "tls", "", true, "Use a TLS connection to POP process")
 
 	rootCmd.AddCommand(cmd.PopCmd)
+	rootCmd.AddCommand(cmd.EdmCmd)
 	rootCmd.AddCommand(cmd.DawgCmd)
 	rootCmd.AddCommand(cmd.ApiCmd)         // TODO move into pop command
 	rootCmd.AddCommand(cmd.FilterlistsCmd) // TODO move into pop command
