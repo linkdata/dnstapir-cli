@@ -34,3 +34,6 @@ out/
 *.tar.gz
 *.rpm
 *.deb
+*.csv
+*.dawg
+/*_new

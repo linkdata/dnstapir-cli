@@ -14,7 +14,7 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/dnstapir/tapir"
-	"github.com/dnstapir/tapir/cmd"
+	tapircmd "github.com/dnstapir/tapir/cmd"
 )
 
 var cfgFile string
@@ -54,13 +54,13 @@ func init() {
 	rootCmd.PersistentFlags().BoolVarP(&tapir.GlobalCF.ShowHdr, "headers", "H", false, "Show column headers")
 	rootCmd.PersistentFlags().BoolVarP(&tapir.GlobalCF.UseTLS, "tls", "", true, "Use a TLS connection to POP process")
 
-	rootCmd.AddCommand(cmd.PopCmd)
-	rootCmd.AddCommand(cmd.EdmCmd)
-	rootCmd.AddCommand(cmd.DawgCmd)
-	rootCmd.AddCommand(cmd.ApiCmd)         // TODO move into pop command
-	rootCmd.AddCommand(cmd.FilterlistsCmd) // TODO move into pop command
-	rootCmd.AddCommand(cmd.EnrollCmd)
-	rootCmd.AddCommand(cmd.RenewCmd)
+	rootCmd.AddCommand(tapircmd.PopCmd)
+	rootCmd.AddCommand(tapircmd.EdmCmd)
+	rootCmd.AddCommand(DawgCmd)
+	rootCmd.AddCommand(tapircmd.ApiCmd)         // TODO move into pop command
+	rootCmd.AddCommand(tapircmd.FilterlistsCmd) // TODO move into pop command
+	rootCmd.AddCommand(tapircmd.EnrollCmd)
+	rootCmd.AddCommand(tapircmd.RenewCmd)
 }
 
 var validate *validator.Validate
@@ -120,7 +120,7 @@ func RootInitConfig() {
 	}
 
 	if tapir.GlobalCF.UseTLS { // default = true
-        certPath := viper.GetString("certs.cert")
+		certPath := viper.GetString("certs.cert")
 		keyPath := viper.GetString("certs.key")
 		caCertPath := viper.GetString("certs.cacertfile")
 		if certPath == "" || keyPath == "" || caCertPath == "" {
